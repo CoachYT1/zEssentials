@@ -5,3 +5,7 @@ messages:
   fly:
     enabled: "%prefix% &7Your fly mode has been &aenabled&7."
     disabled: "%prefix% &7Your fly mode has been &cdisabled&7."
+    enabled-other: "%prefix% &7%player%'s fly mode has been &aenabled&7."
+    enabled-other: "%prefix% &7%player%'s fly mode has been &cdisabled&7."
+    enabled-other: "%prefix% &7Your fly mode has been &aenabled&7 by &e%player%&7."
+    enabled-other: "%prefix% &7Your fly mode has been &cdisabled&7 by &e%player%&7."
