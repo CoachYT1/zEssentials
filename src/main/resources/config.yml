@@ -1,0 +1,7 @@
+messages:
+  prefix: "&6zEssentials &8»"
+  no-perms: "%prefix% &cYou don't have permission to execute this command."
+  player-not-found: "%prefix% &cPlayer &e%player% &cnot found."
+  fly:
+    enabled: "%prefix% &7Your fly mode has been &aenabled&7."
+    disabled: "%prefix% &7Your fly mode has been &cdisabled&7."

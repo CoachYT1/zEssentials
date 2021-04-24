@@ -1,0 +1,9 @@
+name: zEssentials
+version: ${project.version}
+main: it.coachyt.zessentials.Main
+api-version: 1.15
+authors: [CoachYT]
+description: An essential plugin for every server
+commands:
+  fly:
+    descriptio: toggles fly mode for you or other players
