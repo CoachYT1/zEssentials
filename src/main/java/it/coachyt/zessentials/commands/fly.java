@@ -34,11 +34,22 @@ public class fly implements CommandExecutor {
                             player.setAllowFlight(false);
                             player.sendMessage(ChatColor.translateAlternateColorCodes('&', Objects.requireNonNull(plugin.config.getString("messages.fly.disabled")).replace("%prefix%", Objects.requireNonNull(plugin.config.getString("messages.prefix")))));
                         }else{
-                            Player target = Bukkit.getPlayer(args[0]);
-                            if(target!=null){
-                                target.setAllowFlight(!player.getAllowFlight());
+                            if(player.hasPermission("essentials.fly.other")) {
+                                Player target = Bukkit.getPlayer(args[0]);
+                                if (target != null) {
+                                    if (target.getAllowFlight()) {
+                                        player.sendMessage(ChatColor.translateAlternateColorCodes('&', Objects.requireNonNull(plugin.config.getString("messages.fly.disabled-other")).replace("%prefix%", Objects.requireNonNull(plugin.config.getString("messages.prefix"))).replace("%player%", target.getDisplayName())));
+                                        target.sendMessage(ChatColor.translateAlternateColorCodes('&', Objects.requireNonNull(plugin.config.getString("messages.fly.disabled-by-other")).replace("%prefix%", Objects.requireNonNull(plugin.config.getString("messages.prefix"))).replace("%player%", player.getDisplayName())));
+                                    } else {
+                                        player.sendMessage(ChatColor.translateAlternateColorCodes('&', Objects.requireNonNull(plugin.config.getString("messages.fly.enabled-other")).replace("%prefix%", Objects.requireNonNull(plugin.config.getString("messages.prefix"))).replace("%player%", target.getDisplayName())));
+                                        target.sendMessage(ChatColor.translateAlternateColorCodes('&', Objects.requireNonNull(plugin.config.getString("messages.fly.enabled-by-other")).replace("%prefix%", Objects.requireNonNull(plugin.config.getString("messages.prefix"))).replace("%player%", player.getDisplayName())));
+                                    }
+                                    target.setAllowFlight(!player.getAllowFlight());
+                                } else {
+                                    player.sendMessage(ChatColor.translateAlternateColorCodes('&', Objects.requireNonNull(plugin.config.getString("messages.player-not-found")).replace("%prefix%", Objects.requireNonNull(plugin.config.getString("messages.prefix"))).replace("%player%", args[0])));
+                                }
                             }else{
-                                player.sendMessage(ChatColor.translateAlternateColorCodes('&', Objects.requireNonNull(plugin.config.getString("messages.player-not-found")).replace("%prefix%", Objects.requireNonNull(plugin.config.getString("messages.prefix"))).replace("%player%", args[0])));
+                                sender.sendMessage(ChatColor.translateAlternateColorCodes('&', Objects.requireNonNull(plugin.config.getString("messages.no-perms")).replace("%prefix%", Objects.requireNonNull(plugin.config.getString("messages.prefix")))));
                             }
                         }
                     }
